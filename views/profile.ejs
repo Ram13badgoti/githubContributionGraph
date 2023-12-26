@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Contributions</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="profile">
+          <img
+            src="<%= profileDetails.avatarUrl %>"
+            alt="Profile Avatar"
+            class="avatar"
+          />
+          <div class="user-info">
+            <h1><%= profileDetails.name || username %></h1>
+            <p><%= profileDetails.bio || 'No bio available' %></p>
+          </div>
+        </div>
+        <div class="repo-stats">
+          <div>
+            <h2>Total Contributions</h2>
+            <span><%= contributions.totalContributions %></span>
+          </div>
+          <div>
+            <h2>Followers</h2>
+            <span><%= profileDetails.followers.totalCount %></span>
+          </div>
+          <div>
+            <h2>Following</h2>
+            <span><%= profileDetails.following.totalCount %></span>
+          </div>
+        </div>
+      </header>
+
+      <h2>Repositories:</h2>
+      <div class="repo-container">
+        <% repositories.forEach(repo => { %>
+        <div class="repo-box">
+          <h3>
+            <a href="<%= repo.url %>" target="_blank" rel="noopener noreferrer"
+              ><%= repo.name %></a
+            >
+          </h3>
+          <p><%= repo.description || 'No description available' %></p>
+          <p class="repo-language">
+            <span class="dot"></span><%= repo.primaryLanguage ?
+            repo.primaryLanguage.name : 'Not specified' %>
+          </p>
+        </div>
+        <% }); %>
+      </div>
+
+      <div class="contributionGraph">
+        <div class="graphTop">
+          <h2>Contribution Graph:</h2>
+          <h5 class="year">2023</h5>
+        </div>
+        <img
+          class="graph"
+          src="https://ghchart.rshah.org/<%= username %>"
+          alt="<%= username %>'s Contribution Graph"
+        />
+
+        <br /><br />
+        <a class="backBtn" href="/">Go back</a>
+      </div>
+    </div>
+  </body>
+</html>
